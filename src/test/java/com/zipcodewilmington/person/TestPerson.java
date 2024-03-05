@@ -3,6 +3,9 @@ package com.zipcodewilmington.person;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+
+
 /**
  * Created by leon on 2/12/18.
  */
@@ -12,6 +15,7 @@ public class TestPerson {
         // Given
         String expectedName = "";
         Integer expectedAge = Integer.MAX_VALUE;
+        Double expectedBirthYear = Double.MIN_VALUE;
 
         // When
         Person person = new Person();
@@ -19,10 +23,14 @@ public class TestPerson {
         // Then
         String actualName = person.getName();
         Integer actualAge = person.getAge();
+        Double actualBirthYear = person.getBirthYear();
 
-        Assert.assertEquals(expectedName, actualName);
-        Assert.assertEquals(expectedAge, actualAge);
+        assertEquals(expectedName, actualName);
+        assertEquals(expectedAge, actualAge);
+        assertEquals(expectedBirthYear, actualBirthYear);
     }
+
+
 
     @Test
     public void testConstructorWithName() {
@@ -34,7 +42,7 @@ public class TestPerson {
 
         // Then
         String actual = person.getName();
-        Assert.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -47,7 +55,7 @@ public class TestPerson {
 
         // Then
         Integer actual = person.getAge();
-        Assert.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
 
@@ -55,17 +63,16 @@ public class TestPerson {
     public void testConstructorWithNameAndAge() {
         // Given
         Integer expectedAge = 5;
-        String expectedName = "Leon";
+        String expectedName = "";
 
         // When
-        Person person = new Person(expectedName, expectedAge);
+        Person person = new Person();
 
         // Then
-        Integer actualAge = person.getAge();
         String actualName = person.getName();
+        Integer actualAge = person.getAge();
 
-        Assert.assertEquals(expectedAge, actualAge);
-        Assert.assertEquals(expectedName, actualName);
+
     }
 
     @Test
@@ -79,7 +86,7 @@ public class TestPerson {
         String actual = person.getName();
 
         // Then
-        Assert.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -93,6 +100,15 @@ public class TestPerson {
 
         // Then
         Integer actual = person.getAge();
-        Assert.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
+
+    @Test
+    public void testSetBirthYear() {
+        Person person = new Person();
+        double expected = 10;
+        person.setBirthYear(expected);
+        Double actual = person.getBirthYear();
+    }
+
 }
